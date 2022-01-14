@@ -43,29 +43,11 @@ SQLDemo::SQLDemo(QWidget *parent) :
 
      if (!db.open())
       {
-       //QMessageBox::about(this,"Database Error",db.lastError().text());
        qDebug()<<"Database Error";
        qDebug()<<db.lastError();
       }
      else
      {
-        //QSqlQuery query;
-        //ADD query.exec("Insert into phoneuser values('����','18079930119' ,'����ʦ��','4322199812091153')");
-        //Deletequery.exec("delete from phoneuser where name='����'");
-        //modify query.exec("update phoneuser set name = '����' where name = '�'");
-        //find
-        //query.exec("select name from phoneuser where addr='����ʦ��'");
-        //query.next();//��ָ��ָ����ѯ�ĵ���һ����¼ ����ֻ�ܲ�ѯ����һ����¼��Ҫ����һ����ô��ָ�����ƶ�
-        //qDebug()<<query.value(0).toString();
-        //query.next();
-        //qDebug()<<query.value(0).toString();    //��Զ��zhixiang ��һ��
-
-        //int max_id = 0;
-        //while(query.next())
-        //{
-        //max_id = query.value(0).toInt();
-        //qDebug()<<query.value(0).toString() <<QString("max id:%1").arg(max_id);
-        //}
         qDebug()<<"congratulation";
      }
 

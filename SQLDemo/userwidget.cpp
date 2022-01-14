@@ -9,7 +9,7 @@ UserWidget::UserWidget(QWidget *parent) :
     ui->UserInfoTextEdit->setReadOnly(true);
     setMaximumSize(500,400);
     setMinimumSize(500,400);
-    this->setWindowTitle("闽江计费系统");
+    this->setWindowTitle("骑手信息清空系统");
 
     QIcon icon(":/image/github.png");
     setWindowIcon(icon);

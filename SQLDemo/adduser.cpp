@@ -9,11 +9,14 @@ AddUser::AddUser(QWidget *parent) :
     setMaximumSize(671,451);
     setMinimumSize(671,451);
     this->setWindowTitle("骑手添加");
-    QRegExp CountDator("[0-9]{18,18}");
+
+
+    QRegExp Validator("[0-9]{18,18}");
+    QValidator *validator = new QRegExpValidator(Validator,0);
+
+
     QIcon icon(":/image/github.png");
     setWindowIcon(icon);
-    QValidator *validator = new QRegExpValidator(CountDator,0);
-
     groupButton=new QButtonGroup(this);
     groupButton->addButton(ui->femaleButton,0);
     groupButton->addButton(ui->maleButton,1);
@@ -46,44 +49,46 @@ void AddUser::addUserSlot()
 
 
 
+    //空缺
     if(Name.isEmpty()|PhoneNum.isEmpty()|Age.isEmpty()|Edu.isEmpty()|Sex.isEmpty())
     {
         QMessageBox::information(this,"tips","Please complete information",QMessageBox::Yes);
         return ;
     }
     QSqlQuery query;
+
+
+    //单句插入执行成功
     if(query.exec(QString("use Recruitment Insert into Rider(name,tphone,edu,sex,age) values('%1',%2 ,'%3',%4,%5)")
                                             .arg(Name).arg(PhoneNum).arg(Edu).arg(Sex).arg(Age)))
        {
-//        query.exec(QString("Insert into charge values('%1','%2' ,'%3','%4','%5')")
-//                   .arg(Name).arg(PhoneNum).arg(0).arg(0).arg(0));
-//        query.exec(QString("Insert into bill values('%1','%2' ,'%3','%4')")
-//                   .arg(PhoneNum).arg(0).arg(0).arg(0));
         int index = QMessageBox::information
                 (this,"tips","insert successful and Return to the upper layer?",QMessageBox::Yes,QMessageBox::Cancel);
+
+
+        //插入后是否返回home界面
         if(index == QMessageBox::Yes)
         {
             this->close();
             HomePage *PHomePage = new HomePage;
             PHomePage->show();
         }
+        //不返回，继续插入
         else if(index == QMessageBox::Cancel)
             {
             ui->NameLineEdit->clear();
             ui->PhoneLineEdit->clear();
             ui->EduLineEdit->clear();
-            //ui->SexlineEdit->clear();
             ui->AgeLineEdit->clear();
             qDebug()<<"user cansel it.";
             }
     }
+    //单句执行失败
     else
     {
         QMessageBox::information(this,"tip","insert failed!",QMessageBox::Yes);
                 return;
     }
-
-
 }
 
 void AddUser::returnSlot()

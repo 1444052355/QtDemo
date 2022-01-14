@@ -39,16 +39,20 @@ void DeleteInfo::researchSlot()
     QString index=ui->IDLineEdit->text();
     ui->UserTextEdit->clear();
 
-    QSqlQuery query;
                 //qDebug()<<QString("select from Rider where cdanum='%1'").arg(index);
+    QSqlQuery query;
     if(query.exec(QString("select cdanum from Rider where cdanum='%1'").arg(index)))
     {
                     index="Cdanum  name sex age  edu  tphone ";
                             ui->UserTextEdit->append(index);
-                            index="";
-
-                        ui->UserTextEdit->append(QString("100019  周航  1  41  本科  13687832342"));
+                        query.next();
                         index="";
+
+
+                        ui->UserTextEdit->append(QString("%1 %2  %3  %4  %5")
+                                                 .arg(query.value(0).toString()).arg(query.value(1).toString())
+                                                 .arg(query.value(2).toString()).arg(query.value(3).toString())
+                                                 .arg(query.value(4).toString()));
 
     }
     else
