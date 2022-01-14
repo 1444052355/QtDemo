@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/backimage.png</file>
+        <file>image/back.png</file>
+        <file>image/github.png</file>
+        <file>image/1效果素材库更新.png</file>
+    </qresource>
+</RCC>
